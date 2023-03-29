@@ -26,8 +26,8 @@ $student = parseInput($_POST['student'], 'name', 'All Students', true);
 $startDate = parseInput($_POST['startDate'], null, 'None', false);
 $endDate = parseInput($_POST['endDate'], null, 'None', false);
 
-echo "<p>$event[1]</p>";
-echo "<p>$student[1]</p>";
-echo "<p>Begin Date: $startDate[1] End Date: $endDate[1]</p>";
+echo "<p>$event[1]<br>";
+echo "$student[1]<br>";
+echo "Begin Date: $startDate[1] End Date: $endDate[1]</p>";
 
 ?>
