@@ -27,7 +27,8 @@ echo "<label for='endDate'>End Date:</label>";
 echo "<input type='date' id='endDate' name='endDate'>";
 
 ?>
-<input type='submit' name ='Btn' value='Send'>
+<br>
+<input type='submit' name ='Btn' value='Submit'>
 </form>
 </body>
 </html>
