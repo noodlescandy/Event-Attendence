@@ -12,13 +12,13 @@ require 'credentials.php';
 echo "<label for='event'>Choose an event:</label>";
 echo "<select name='event' id='event'>";
 $query = "SELECT id, event_name FROM EA_EVENT";
-echo "<option value='event_name'>All Events</option>";
+echo "<option value=null>All Events</option>";
 getOptions($mysqli, $query);
 
 echo "<label for='student'>Choose a student:</label>";
 echo "<select name='student' id='student'>";
 $query = "SELECT id, name FROM EA_STUDENT";
-echo "<option value='name'>All Students</option>";
+echo "<option value=null>All Students</option>";
 getOptions($mysqli, $query);
 
 echo "<label for='startDate'>Begin Date:</label>";
