@@ -20,12 +20,12 @@ else{
     $event = unserialize($event);
 }*/
 
-$event = parseInput($_POST['event'], 'event_name', 'All Events', true)
+$event = parseInput($_POST['event'], 'event_name', 'All Events', true);
 $student = parseInput($_POST['student'], 'name', 'All Students', true);
 
 // these may cause problems
-$startDate = parseInput($_POST['startDate'] null, 'None', false);
-$endDate = parseInput($_POST['endDate'] null, 'None', false);
+$startDate = parseInput($_POST['startDate'], null, 'None', false);
+$endDate = parseInput($_POST['endDate'], null, 'None', false);
 
 echo "<p>$event</p><br>";
 echo "<p>$student</p><br>";
