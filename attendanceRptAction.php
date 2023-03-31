@@ -1,7 +1,7 @@
 <?php
 require 'credentials.php';
 function parseInput($in, $replaceNullWith, $text, $shouldUnserialize){
-    if($in == null){
+    if($in == null || $in == "all"){
         $in = [$replaceNullWith, $text];
     }
     else{
@@ -15,24 +15,36 @@ function parseInput($in, $replaceNullWith, $text, $shouldUnserialize){
     return $in;
 }
 
-$event = parseInput($_POST['event'], 'event_id', 'All Events', true);
-$student = parseInput($_POST['student'], 'student_id', 'All Students', true);
+$event = parseInput($_POST['event'], 'all', 'All Events', true);
+$student = parseInput($_POST['student'], 'all', 'All Students', true);
 
-$startDate = parseInput($_POST['startDate'], 'event_date', 'None', false);
-$endDate = parseInput($_POST['endDate'], 'event_date', 'None', false);
+$startDate = parseInput($_POST['startDate'], 'all', 'None', false);
+$endDate = parseInput($_POST['endDate'], 'all', 'None', false);
 
 echo "<p>$event[1]<br>";
 echo "$student[1]<br>";
 echo "Begin Date: $startDate[1] End Date: $endDate[1]</p>";
 
-$query = "
-SELECT name, event_name, event_date
+$query = "SELECT name, event_name, event_date
 FROM `EA_ATTEND`
 JOIN EA_STUDENT ON student_id=EA_STUDENT.id
 JOIN EA_EVENT ON event_id=EA_EVENT.id
-WHERE student_id = $student[0] AND event_id = $event[0]
-AND event_date BETWEEN $startDate[0] AND $endDate[0]
-";
+WHERE 1=1";
+
+if ($student[0] !== "all") {
+    $query = $query." AND student_id = ".$student[0];
+}
+if ($event[0] !== "all") {
+    $query = $query." AND event_id = ".$event[0];
+}
+if ($startDate[0] !== "all") {
+    $query = $query." AND event_date >= '".$startDate[0]."'";
+}
+if ($endDate[0] !== "all") {
+    $query = $query." AND event_date <= '".$endDate[0]."'";
+}
+
+echo $query;
 
 if($result = $mysqli->query($query)){
 	if($result->num_rows > 0){
