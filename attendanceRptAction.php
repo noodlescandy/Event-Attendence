@@ -44,8 +44,6 @@ if ($endDate[0] !== "all") {
     $query = $query." AND event_date <= '".$endDate[0]."'";
 }
 
-echo $query;
-
 if($result = $mysqli->query($query)){
 	if($result->num_rows > 0){
 		echo "<table cellpadding=10 border=1>";
